@@ -52,7 +52,9 @@ function App() {
          },
          blocks: ['link-block', 'quote', 'text-basic'],
        },
-     }
+     },
+     
+    //  scripts: ['https://.../somelib.min.js'], acá hay que agregar el script del streaming
    })
  },[])
 
