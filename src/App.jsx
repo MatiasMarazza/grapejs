@@ -7,7 +7,7 @@ import 'grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.js'
 
 function App() {
  useEffect(() => {
-   grapesjs.init({
+ const editor = grapesjs.init({
      container: '#gjs',
      height: '1080px',
      width: '100%',
@@ -53,9 +53,22 @@ function App() {
          blocks: ['link-block', 'quote', 'text-basic'],
        },
      },
+     	exportWrapper: false,
+       wrapperIsBody: false,
+       dragMode: 'absolute',
+     
      
     //  scripts: ['https://.../somelib.min.js'], acá hay que agregar el script del streaming
    })
+   editor.Components.addType('wrapper', {
+    model: {
+      defaults: {
+        tagName: 'span'
+      },
+      toHTML: function(opts) {
+        return this.getInnerHTML(opts);
+       }
+    }})
  },[])
 
  return (
