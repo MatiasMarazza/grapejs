@@ -28,7 +28,7 @@ function App() {
            id: 'desktop',
            name: 'Desktop',
            width: '',
-           height:'1080px'
+           height:''
          },
          {
            id: 'tablet',
@@ -106,12 +106,16 @@ function App() {
         dblclick: "handleDblClick"
       },
       handleDblClick() {
-        alert("HOla mundo!");
+        alert("Hola mundo!!");
       }
-    }
+    },
+    model: {
+      defaults: {
+        attributes: { class: 'streaming' },
+      }
+    },
   });
-  
-  
+
   // Add a block
   Blocks.add("Video", {
     label: "Video HLS",
@@ -125,11 +129,9 @@ function App() {
    editor.Components.addType('wrapper', {
     model: {
       defaults: {
-        tagName: 'span'
+        tagName: 'section'
       },
-      toHTML: function(opts) {
-        return this.getInnerHTML(opts);
-       }
+    
     }})
  },[])
 
