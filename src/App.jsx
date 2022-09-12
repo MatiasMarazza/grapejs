@@ -110,6 +110,22 @@ function App() {
       }
     },
     model: {
+      init() {
+        this.addMutedTrait();
+      },
+  
+      updateTraits() {
+        this.addMutedTrait();
+      },
+  
+      addMutedTrait() {
+        if (!this.getTrait('muted')) {
+          this.addTrait({
+            type: 'checkbox',
+            name: 'muted',
+          })
+        }
+      },
       defaults: {
         attributes: { class: 'streaming' },
       }
@@ -119,7 +135,7 @@ function App() {
   // Add a block
   Blocks.add("Video", {
     label: "Video HLS",
-    attributes: { class: "fa fa-youtube-play HLS" },
+    attributes: { class: "fa fa-youtube-play" },
     content: {
       type: "custom-video"
     }

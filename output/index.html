@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+    <title>Test</title>
+    <!-- styles -->
+    <style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+#ii6c{
+  height:1008.9500122070312px;
+  width:1098px;
+  left:0px;
+  top:0.01666259765625px;
+  position:absolute;
+}
+.streaming{
+  width:100%;
+  height:100%;
+}
+
+    </style>
+</head>
+<body>
+    
+  <!-- INICIO DE CONTENIDO -->
+  <section id="ihoh">
+    <video class="streaming" muted allowfullscreen="allowfullscreen" id="ii6c" src="../public/assets/Mega.mp4" loop="loop" autoplay="autoplay">
+    </video>
+  </section>
+<!-- FIN DE CONTENIDO -->
+    <script>
+        var video = document.getElementsByClassName('streaming ');
+        var videoSrc =  video.src;
+        if (Hls.isSupported()) {
+          var hls = new Hls();
+          hls.loadSource(videoSrc);
+          hls.attachMedia(video);
+        }
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = videoSrc;
+        }
+      </script>
+</body>
+</html>
