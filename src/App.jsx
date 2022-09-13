@@ -101,6 +101,7 @@ function App() {
 
   DomComponents.addType("custom-video", {
     extend: "video",
+    extendFn: ['init'],
     view: {
       events: {
         dblclick: "handleDblClick"
@@ -114,9 +115,9 @@ function App() {
         this.addMutedTrait();
       },
   
-      updateTraits() {
-        this.addMutedTrait();
-      },
+      // updateTraits() {
+      //   this.addMutedTrait();
+      // },
   
       addMutedTrait() {
         if (!this.getTrait('muted')) {
