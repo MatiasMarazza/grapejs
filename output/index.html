@@ -8,25 +8,35 @@
     <title>Test</title>
     <!-- styles -->
     <style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+.streaming{
+  width:1920px;
+  height:1080px;
+}
 
     </style>
 </head>
 <body>
     
   <!-- INICIO DE CONTENIDO -->
-    <video class="streaming" muted allowfullscreen="allowfullscreen" id="ii6c" src="../public/assets/Mega.mp4" loop="loop" autoplay="autoplay">
+  <section id="ihoh">
+    <video class="streaming" id="streaming" muted src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" loop="loop" autoplay="autoplay">
     </video>
+  </section>
 <!-- FIN DE CONTENIDO -->
     <script>
-        var video = document.getElementsByClassName('streaming ');
+        var video = document.getElementById('streaming');
         var videoSrc =  video.src;
         if (Hls.isSupported()) {
           var hls = new Hls();
           hls.loadSource(videoSrc);
           hls.attachMedia(video);
-        }
-        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-          video.src = videoSrc;
         }
       </script>
 </body>

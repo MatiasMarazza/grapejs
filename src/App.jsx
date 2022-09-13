@@ -10,7 +10,7 @@ function App() {
  const editor = grapesjs.init({
      container: '#gjs',
      height: '1080px',
-     width: '100%',
+     width: '1920px',
      plugins: ['gjs-preset-webpage'],
      storageManager: {
        id: 'gjs-',
@@ -58,7 +58,7 @@ function App() {
        dragMode: 'absolute',
      
      
-    //  scripts: ['https://.../somelib.min.js'], acá hay que agregar el script del streaming
+      scripts: ['https://cdn.jsdelivr.net/npm/hls.js@1']
    })
   //  editor.DomComponents.addType('video-hls', {
   //   // Make the editor understand when to bind `my-input-type`
