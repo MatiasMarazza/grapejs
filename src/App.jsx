@@ -4,14 +4,18 @@ import 'grapesjs/dist/css/grapes.min.css'
 import 'grapesjs/dist/grapes.min.js'
 import 'grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css'
 import 'grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.js'
+//custom plugins
+import wrapperPlugin from '../plugins/wrapperPlugin'
+import customVideoBlock from "../plugins/customVideoBlock";
+import customVideoElement from "../plugins/customVideoElement";
 
 function App() {
  useEffect(() => {
  const editor = grapesjs.init({
      container: '#gjs',
      height: '1080px',
-     width: '1920px',
-     plugins: ['gjs-preset-webpage'],
+     width: '100%',
+     plugins: ['gjs-preset-webpage', wrapperPlugin, customVideoBlock, customVideoElement],
      storageManager: {
        id: 'gjs-',
        type: 'local',
@@ -60,96 +64,73 @@ function App() {
      
       scripts: ['https://cdn.jsdelivr.net/npm/hls.js@1']
    })
-  //  editor.DomComponents.addType('video-hls', {
-  //   // Make the editor understand when to bind `my-input-type`
-  //   isComponent: el => el.tagName === 'INPUT',
+
+  //  const stream = function(props) {
+  //   const initLib = function() {
+  //     const el = this;
+  //     const myLibOpts = {
+  //       prop1: props.myprop1,
+  //       prop2: props.myprop2,
+  //     };
+  //     someExtLib(el, myLibOpts);
+  //   };
   
-  //   // Model definition
-  //   model: {
-  //     // Default properties
-  //     defaults: {
-  //       tagName: 'video',
-  //       draggable: true, 
-  //       droppable: true, // Can drop other elements inside
-  //       attributes: { // Default attributes
-  //         type: 'video',
-  //         name: 'video-hls',
-  //         placeholder: 'm3u8',
-  //         allowfullscreen: 'allowfullscreen'
-  //       },
-  //       traits: [
-  //         'name',
-  //         'placeholder',
-  //         { type: 'checkbox', name: 'required' },
-  //       ],
-  //     }
+  //   if (typeof someExtLib == 'undefined') {
+  //     const stream = document.createElement('stream');
+  //     stream.onload = initLib;
+  //     stream.src = 'https://cdn.jsdelivr.net/npm/hls.js@1';
+  //     document.body.appendChild(stream);
+  //   } else {
+  //     initLib();
   //   }
-  // });
+  // };
 
-  // comps.addType('video-hls', {
-  //   isComponent: el => {el.tagName == 'video'},
-  //   extend: 'other-defined-component',
-  //   model: { 
-  //     defaults:{
+  const def = editor.Components.getType("default");
 
-  //     }
-  //    }, // Will extend the model from 'other-defined-component'
-  //   view: { ... }, // Will extend the view from 'other-defined-component'
-  // });
-
-  const { DomComponents, Blocks } = editor;
-
-  DomComponents.addType("custom-video", {
-    extend: "video",
-    extendFn: ['init'],
-    view: {
-      events: {
-        dblclick: "handleDblClick"
-      },
-      handleDblClick() {
-        alert("Hola mundo!!");
-      }
-    },
-    model: {
-      init() {
-        this.addMutedTrait();
-      },
-  
-      // updateTraits() {
-      //   this.addMutedTrait();
-      // },
-  
-      addMutedTrait() {
-        if (!this.getTrait('muted')) {
-          this.addTrait({
-            type: 'checkbox',
-            name: 'muted',
-          })
-        }
-      },
-      defaults: {
-        attributes: { class: 'streaming' },
-      }
-    },
-  });
-
-  // Add a block
-  Blocks.add("Video", {
-    label: "Video HLS",
-    attributes: { class: "fa fa-youtube-play" },
-    content: {
-      type: "custom-video"
+editor.Components.addType("default", {
+   model:{
+      defaults:{
+         duration: 2,
+         delay: 0,
+         traits:[
+            ...def.model.prototype.defaults.traits,
+            ...[{
+                   changeProp: 1,
+                   type: "select",
+                   label: "Animation",
+                   name: "animation",
+                   options:[
+                     {value: 'bounce',name: 'Bounce'},
+                     //Other animations...
+                   ]
+             }, {
+                   changeProp: 1,
+                   type: "number",
+                   label: "Duration(s)",
+                   name: "duration",
+             }, {
+                   changeProp: 1,
+                   type: "number",
+                   label: "Delay(s)",
+                   name: "delay",
+             }]
+          ]
+       },
+       init() {
+          this.on("change:animation", this.onAnimationChange);
+          this.on("change:duration", this.onAnimationChange);
+          this.on("change:delay", this.onAnimationChange);
+       },
+       onAnimationChange() {
+          const animation = this.get("animation");
+          const duration = this.get("duration");
+          const delay = this.get("delay");
+          this.addStyle({ "animation": `${animation} ${duration}s ${delay}s infinite` });
+       }
     }
-  });
-  
+});
 
-   editor.Components.addType('wrapper', {
-    model: {
-      defaults: {
-        tagName: 'section'
-      },
-    
-    }})
+
  },[])
 
  return (
