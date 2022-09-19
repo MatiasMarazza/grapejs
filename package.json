@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "grapesjs": "^0.19.5",
+    "grapesjs-custom-code": "^1.0.1",
     "grapesjs-preset-webpage": "^0.1.11",
     "grapesjs-react": "^4.0.1",
     "react": "^18.2.0",

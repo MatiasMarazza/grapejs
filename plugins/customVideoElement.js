@@ -16,6 +16,7 @@ const script = function(){
 }
 export default function customVideoElement(editor){
     const { DomComponents, Blocks } = editor;
+    
     DomComponents.addType("custom-video", {
         extend: "video",
         extendFn: ['init'],
@@ -24,10 +25,15 @@ export default function customVideoElement(editor){
             dblclick: "handleDblClick"
           },
           handleDblClick() {
-            alert("Hola mundo!!");
-          }
+            alert("Hola mundo");
+          },
         },
         model: {
+          defaults: {
+            tagName: 'video-js',
+            script,
+            attributes: { class: 'streaming'},
+          },
           init() {
             this.addMutedTrait();
           },
@@ -44,10 +50,8 @@ export default function customVideoElement(editor){
               })
             }
           },
-          defaults: {
-            script,
-            attributes: { class: 'streaming'},
-          }
+
+          
         },
       });
     
