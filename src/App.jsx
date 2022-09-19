@@ -1,7 +1,8 @@
+// react needed
 import { useEffect } from "react";
 import grapesjs from 'grapesjs'
+// preset needed
 import 'grapesjs/dist/css/grapes.min.css'
-import 'grapesjs/dist/grapes.min.js'
 import 'grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css'
 import 'grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.js'
 //custom plugins
@@ -12,6 +13,13 @@ import customVideoElement from "../plugins/customVideoElement";
 function App() {
  useEffect(() => {
  const editor = grapesjs.init({
+  canvas:{
+    scripts: ['https://cdn.jsdelivr.net/npm/hls.js@1'],
+    styles:['https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css']
+  },
+  selectorManager: {
+    componentFirst: true,
+  },
      container: '#gjs',
      height: '1080px',
      width: '100%',
@@ -34,18 +42,6 @@ function App() {
            width: '',
            height:''
          },
-         {
-           id: 'tablet',
-           name: 'Tablet',
-           width: '768px',
-           widthMedia: '992px',
-         },
-         {
-           id: 'mobilePortrait',
-           name: 'Mobile portrait',
-           width: '320px',
-           widthMedia: '575px',
-         },
        ]
      },
      pluginsOpts: {
@@ -64,7 +60,18 @@ function App() {
      
       scripts: ['https://cdn.jsdelivr.net/npm/hls.js@1']
    })
-
+   
+   editor.DomComponents.addType("myComponent", {
+    model: {
+      init() {
+        this.on("change:attributes", this.handleChange);
+      },
+      handleChange() {
+        console.log("value ", this.getAttributes()); // This is
+        this.addClass("active");
+      }
+    }
+  });
 
 // const def = editor.Components.getType("default");
 

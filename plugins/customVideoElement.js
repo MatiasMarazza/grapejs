@@ -1,5 +1,19 @@
 import grapesjs from "grapesjs"
 
+const script = function(){
+  let elements = document.getElementsByClassName('streaming');
+  let video = elements[0];
+  let videoSrc = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
+  if (Hls.isSupported()) {
+    var hls = new Hls();
+    hls.loadSource(videoSrc);
+    hls.attachMedia(video);
+  }
+
+  else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = videoSrc;
+  }
+}
 export default function customVideoElement(editor){
     const { DomComponents, Blocks } = editor;
     DomComponents.addType("custom-video", {
@@ -31,7 +45,8 @@ export default function customVideoElement(editor){
             }
           },
           defaults: {
-            attributes: { class: 'streaming' },
+            script,
+            attributes: { class: 'streaming'},
           }
         },
       });

@@ -7,20 +7,31 @@ export default function wrapperPlugin(editor){
       defaults: {
         tagName: 'section',
         stylable: [
-          // Default attributes
-          'background',
-          'background-color',
-          'background-image',
-          'background-repeat',
-          'background-attachment',
-          'background-position',
-          'background-size',
+                // Default attributes
+                'background',
+                'background-color',
+                'background-image',
+                'background-repeat',
+                'background-attachment',
+                'background-position',
+                'background-size',
 
-          // Add the "Dimension" sector attributes
-          'width',
-          'height', 
-
-      ]
+                // Add the "Dimension" sector attributes
+                'width',
+                'height', 
+                'max-width',
+                'min-height', 
+                'margin', 
+                'margin-top', 
+                'margin-right', 
+                'margin-bottom', 
+                'margin-left', 
+                'padding', 
+                'padding-top', 
+                'padding-right', 
+                'padding-bottom', 
+                'padding-left'
+            ]
       },
     
     }})
