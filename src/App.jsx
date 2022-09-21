@@ -60,66 +60,104 @@ function App() {
       dragMode: 'absolute',
 
 
-      scripts: ['https://cdn.jsdelivr.net/npm/hls.js@1', 'https://unpkg.com/video.js/dist/video.js', ['ttps://unpkg.com/@videojs/http-streaming/dist/videojs-http-streaming.js']]
+      scripts: ['https://cdn.jsdelivr.net/npm/hls.js@1']
     })
 
-    editor.DomComponents.addType("myComponent", {
-      model: {
-        init() {
-          this.on("change:attributes", this.handleChange);
-        },
-        handleChange() {
-          console.log("value ", this.getAttributes()); // This is
-          this.addClass("active");
-        }
-      }
-    });
+    
+    // const { DomComponents, Blocks } = editor;
 
-    // const def = editor.Components.getType("default");
+     const def = editor.Components.getType("default");
 
-    // editor.Components.addType("default", {
-    //    model:{
-    //       defaults:{
-    //          duration: 2,
-    //          delay: 0,
-    //          traits:[
-    //             ...def.model.prototype.defaults.traits,
-    //             ...[{
-    //                    changeProp: 1,
-    //                    type: "select",
-    //                    label: "Animation",
-    //                    name: "animation",
-    //                    options:[
-    //                      {value: 'bounce',name: 'Bounce'},
-    //                      //Other animations...
-    //                    ]
-    //              }, {
-    //                    changeProp: 1,
-    //                    type: "number",
-    //                    label: "Duration(s)",
-    //                    name: "duration",
-    //              }, {
-    //                    changeProp: 1,
-    //                    type: "number",
-    //                    label: "Delay(s)",
-    //                    name: "delay",
-    //              }]
-    //           ]
-    //        },
-    //        init() {
-    //           this.on("change:animation", this.onAnimationChange);
-    //           this.on("change:duration", this.onAnimationChange);
-    //           this.on("change:delay", this.onAnimationChange);
-    //        },
-    //        onAnimationChange() {
-    //           const animation = this.get("animation");
-    //           const duration = this.get("duration");
-    //           const delay = this.get("delay");
-    //           this.addStyle({ "animation": `${animation} ${duration}s ${delay}s infinite` });
-    //        }
-    //     }
-    // });
+     editor.Components.addType("default", {
+        model:{
+           defaults:{
+              duration: 2,
+              delay: 0,
+              traits:[
+                 ...def.model.prototype.defaults.traits,
+                 ...[{
+                        changeProp: 1,
+                        type: "select",
+                        label: "Animation",
+                        name: "animation",
+                        options:[
+                          {value: 'bounce',name: 'Bounce'},
+                          //expandir con más animaciones 
+                        ]
+                  }, {
+                        changeProp: 1,
+                        type: "number",
+                        label: "Duration(s)",
+                        name: "duration",
+                  }, {
+                        changeProp: 1,
+                        type: "number",
+                        label: "Delay(s)",
+                        name: "delay",
+                  }]
+               ]
+            },
+            init() {
+               this.on("change:animation", this.onAnimationChange);
+               this.on("change:duration", this.onAnimationChange);
+               this.on("change:delay", this.onAnimationChange);
+            },
+            onAnimationChange() {
+               const animation = this.get("animation");
+               const duration = this.get("duration");
+               const delay = this.get("delay");
+               this.addStyle({ "animation": `${animation} ${duration}s ${delay}s infinite` });
+            }
+         }
+     });
 
+     const allComps = editor.DomComponents.componentTypes.slice();
+     for (let i = 0; i < allComps.length; i++) {
+         const thisComp = editor.DomComponents.getType(allComps[i].id);
+         editor.DomComponents.addType(allComps[i].id, {
+             model: thisComp.model.extend({
+                 defaults: {
+                     ...thisComp.model.prototype.defaults,
+                     copyable: false,
+                     traits:[
+                         ...def.model.prototype.defaults.traits,
+                         ...[{
+                                changeProp: 1,
+                                type: "select",
+                                label: "Animation",
+                                name: "animation",
+                                options:[
+                                  {value: 'bounce',name: 'Bounce'},
+                                  //expandir con más animaciones 
+                                ]
+                          }, {
+                                changeProp: 1,
+                                type: "number",
+                                label: "Duration(s)",
+                                name: "duration",
+                          }, {
+                                changeProp: 1,
+                                type: "number",
+                                label: "Delay(s)",
+                                name: "delay",
+                          }]
+                       ]
+                 },
+                 init() {
+                  this.on("change:animation", this.onAnimationChange);
+                  this.on("change:duration", this.onAnimationChange);
+                  this.on("change:delay", this.onAnimationChange);
+               },
+               onAnimationChange() {
+                  const animation = this.get("animation");
+                  const duration = this.get("duration");
+                  const delay = this.get("delay");
+                  this.addStyle({ "animation": `${animation} ${duration}s ${delay}s infinite` });
+               }
+             }),
+             view: thisComp.view,
+         });
+     }
 
   }, [])
 

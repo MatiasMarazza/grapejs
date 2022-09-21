@@ -4,7 +4,13 @@ export default function wrapperPlugin(editor){
     // wrapper element
    editor.Components.addType('wrapper', {
     model: {
+      styleManager:{
+        name: 'Dimension',
+        open: false,
+        buildProps: ['width', 'flex-width', 'height', 'max-width', 'min-height', 'margin', 'padding'],
+      },
       defaults: {
+
         tagName: 'section',
         stylable: [
                 // Default attributes
