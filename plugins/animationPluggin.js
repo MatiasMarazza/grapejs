@@ -19,6 +19,7 @@ export default function animationPluggin(editor) {
                                label: "Animation",
                                name: "animation",
                                options:[
+                                {value: 'none',name: 'Sin animación'},
                                  {value: 'bounce',name: 'Bounce'},
                                  {value: 'flash',name: 'flash'},
                                  {value: 'pulse',name: 'pulse'},
@@ -129,7 +130,7 @@ export default function animationPluggin(editor) {
                             name: "infinite",
                             options:[
                                 {value: 'infinite',name: 'Es infinita'},
-                                {value: 'initial',name: 'NO es infinita'},]
+                                {value: 'paused',name: 'NO es infinita'},]
                       }]
                       ]
                 },

@@ -21,7 +21,7 @@ export default function customVideoElement(editor){
         },
         model: {
           defaults: {
-            tagName: 'video-js',
+            tagName: 'video',
             script,
             attributes: { class: 'streaming'},
           },

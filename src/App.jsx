@@ -62,9 +62,23 @@ function App() {
 
 
       scripts: ['https://cdn.jsdelivr.net/npm/hls.js@1']
+
+      
     })
 
-
+    
+    editor.Panels.addPanel({ id: "devices-c" }).get("buttons").add([
+      { id: "block-editor", command: function(e) { 
+        const exportData ={
+          html: editor.getHtml(),
+          css: editor.getCss(),
+        };
+        const projectData = editor.getProjectData();
+        console.log(projectData);
+        console.log(exportData);
+      }
+      , className: "fa fa-floppy-o" }
+  ]);
   }, [])
 
   return (
