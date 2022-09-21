@@ -121,19 +121,30 @@ export default function animationPluggin(editor) {
                                type: "number",
                                label: "Delay(s)",
                                name: "delay",
-                         }]
+                         },
+                         {
+                            changeProp: 1,
+                            type: "select",
+                            label: "Infinita?",
+                            name: "infinite",
+                            options:[
+                                {value: 'infinite',name: 'Es infinita'},
+                                {value: 'initial',name: 'NO es infinita'},]
+                      }]
                       ]
                 },
                 init() {
                  this.on("change:animation", this.onAnimationChange);
                  this.on("change:duration", this.onAnimationChange);
                  this.on("change:delay", this.onAnimationChange);
+                 this.on("change:infinite", this.onAnimationChange);
               },
               onAnimationChange() {
                  const animation = this.get("animation");
                  const duration = this.get("duration");
                  const delay = this.get("delay");
-                 this.addStyle({ "animation": `${animation} ${duration}s ${delay}s infinite` });
+                 const infinite = this.get("infinite");
+                 this.addStyle({ "animation": `${animation} ${duration}s ${delay}s ${infinite}` });
               }
             }),
             view: thisComp.view,
