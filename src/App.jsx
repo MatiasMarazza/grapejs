@@ -10,7 +10,6 @@ import wrapperPlugin from '../plugins/wrapperPlugin'
 import customVideoBlock from "../plugins/customVideoBlock";
 import customVideoElement from "../plugins/customVideoElement";
 import animationPluggin from "../plugins/animationPluggin";
-import bodysizePlugin from "../plugins/bodysizePlugin";
 
 function App() {
   useEffect(() => {
@@ -26,8 +25,8 @@ function App() {
       },
       container: '#gjs',
       height: '1080px',
-      width: '100%',
-      plugins: [plugin,customCodePlugin, wrapperPlugin, customVideoBlock, customVideoElement, bodysizePlugin, animationPluggin ],
+      width: '1920px',
+      plugins: [plugin,customCodePlugin, wrapperPlugin, customVideoBlock, customVideoElement, animationPluggin ],
       storageManager: {
         id: 'gjs-',
         type: 'local',

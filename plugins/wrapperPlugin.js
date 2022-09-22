@@ -5,12 +5,12 @@ export default function wrapperPlugin(editor){
    editor.Components.addType('wrapper', {
     model: {
       styleManager:{
-        name: 'Dimension',
+        name: 'Decorations',
         open: false,
         buildProps: ['width', 'flex-width', 'height', 'max-width', 'min-height', 'margin', 'padding'],
       },
       defaults: {
-
+        stylable: ['width', 'height'],
         tagName: 'section',
         stylable: [
                 // Default attributes
