@@ -24,13 +24,6 @@ export default function customVideoElement(editor){
             tagName: 'video',
             script,
             attributes: { class: 'streaming'},
-            traits: [
-              {
-                type: 'href-next',
-                name: 'href',
-                label: 'New href',
-              },
-            ]
           },
           
 
@@ -55,6 +48,20 @@ export default function customVideoElement(editor){
                 type: 'checkbox',
                 name: 'muted',
               })
+              this.addTrait(
+               [
+                  {
+                      type: 'select',
+                      options: [
+                          { value: 'video', name: 'NO streaming' },
+                          { value: 'video-js', name: 'streaming' },
+                      ],
+                      label: 'Size',
+                      name: 'tagName',
+                      changeProp: 1,
+                  },
+              ],
+              )
             }
           },
         },
