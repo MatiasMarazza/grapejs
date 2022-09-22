@@ -24,14 +24,30 @@ export default function customVideoElement(editor){
             tagName: 'video',
             script,
             attributes: { class: 'streaming'},
+            traits: [
+              {
+                type: 'href-next',
+                name: 'href',
+                label: 'New href',
+              },
+            ]
           },
+          
+
+          
+        },
+      });
+      const dc = editor.DomComponents;
+      dc.addType('custom-video', {
+        extendFn: ['updateTraits'],
+        model: {
           init() {
             this.addMutedTrait();
           },
       
-          // updateTraits() {
-          //   this.addMutedTrait();
-          // },
+          updateTraits() {
+            this.addMutedTrait();
+          },
       
           addMutedTrait() {
             if (!this.getTrait('muted')) {
@@ -41,11 +57,8 @@ export default function customVideoElement(editor){
               })
             }
           },
-
-          
         },
-      });
-    
+      })
 }
 
 var editor = grapesjs.init({
