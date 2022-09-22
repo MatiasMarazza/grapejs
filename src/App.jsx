@@ -16,7 +16,7 @@ function App() {
     const editor = grapesjs.init({
       canvas: {
         // hls para streaming
-        scripts: ['https://unpkg.com/@videojs/http-streaming/dist/videojs-http-streaming.js' , 'https://unpkg.com/video.js/dist/video.js'],
+        scripts: ['https://cdn.jsdelivr.net/npm/hls.js@1'],
         // animate css para animaciones
         styles: ['https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', 'https://unpkg.com/video.js/dist/video-js.css']
       },
@@ -58,7 +58,7 @@ function App() {
       },
       exportWrapper: true,
       wrapperIsBody: true,
-      dragMode: 'absolute',
+      // dragMode: 'absolute',
 
 
       scripts: ['https://cdn.jsdelivr.net/npm/hls.js@1']
@@ -66,7 +66,7 @@ function App() {
       
     })
 
-    
+    editor.getModel().set('dmode','absolute')
     editor.Panels.addPanel({ id: "devices-c" }).get("buttons").add([
       { id: "block-editor", command: function(e) { 
         const exportData ={

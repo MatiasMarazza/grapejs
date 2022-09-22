@@ -1,9 +1,11 @@
 import grapesjs from "grapesjs"
 
 const script = function(){
-  var video = document.querySelector('.streaming');
-    var hls = new Hls();
+  var video = document.getElementById('i3zk');
+
     hls.attachMedia(video);
+
+
 }
 export default function customVideoElement(editor){
     const { DomComponents, Blocks } = editor;
@@ -48,20 +50,20 @@ export default function customVideoElement(editor){
                 type: 'checkbox',
                 name: 'muted',
               })
-              this.addTrait(
-               [
-                  {
-                      type: 'select',
-                      options: [
-                          { value: 'video', name: 'NO streaming' },
-                          { value: 'video-js', name: 'streaming' },
-                      ],
-                      label: 'Size',
-                      name: 'tagName',
-                      changeProp: 1,
-                  },
-              ],
-              )
+              // this.addTrait(
+              //  [
+              //     {
+              //         type: 'select',
+              //         options: [
+              //             { value: 'video', name: 'NO streaming' },
+              //             { value: 'video-js', name: 'streaming' },
+              //         ],
+              //         label: 'Size',
+              //         name: 'tagName',
+              //         changeProp: 1,
+              //     },
+              // ],
+              // )
             }
           },
         },
