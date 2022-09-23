@@ -1,0 +1,4 @@
+{
+    "html": "<section id=\"ihoh\" title=\"lorem\"><video class=\"streaming\" muted id=\"i3zk\" src=\"../public/assets/Mega.mp4\" loop=\"loop\" autoplay=\"autoplay\" controls=\"controls\"></video></section><script>var items = document.querySelectorAll('#i3zk');\n          for (var i = 0, len = items.length; i < len; i++) {\n            (function(){\nvar video = document.getElementById('i3zk');\n\n    hls.attachMedia(video);\n}.bind(items[i]))();\n          }</script>",
+    "css": "* { box-sizing: border-box; } body {margin: 0;}#i3zk{left:107px;top:50.01666259765625px;position:absolute;width:1632px;height:820px;}"
+  }

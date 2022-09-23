@@ -1,0 +1,34 @@
+[
+    {
+      "frames": [
+        {
+          "component": {
+            "type": "wrapper",
+            "stylable": [
+              "background",
+              "background-color",
+              "background-image",
+              "background-repeat",
+              "background-attachment",
+              "background-position",
+              "background-size"
+            ],
+            "attributes": {
+              "id": "ihoh",
+              "title": "lorem"
+            },
+            "animation": "none",
+            "duration": "2",
+            "delay": "1",
+            "infinite": "paused",
+            "Height": "21",
+            "Width": "16",
+            "height": "1080",
+            "width": "1920"
+          }
+        }
+      ],
+      "type": "main",
+      "id": "N022LHnF7OCJdMM3"
+    }
+  ]
