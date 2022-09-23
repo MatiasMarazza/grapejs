@@ -5,28 +5,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- HLS -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.14/hls.js" integrity="sha512-Uxb1LSW1XkMpEWsi4HguYGAHbXnNP5h0On1bBlSOZmEe42ajm2TCVy6khtfr5jFfjlToaG/mrN6R5zslmOCnAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- ANIMACIONES -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <title>Test</title>
-    <!-- styles -->
 
+
+
+    
+    <!-- styles -->
+    <style>
+      * {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+#ifdi{
+  left:585px;
+  top:170px;
+  position:absolute;
+  width:758px;
+  height:0px;
+}
+
+    </style>
     <!-- fin de styles -->
 </head>
+
+
+
+
 <body>
     
   <!-- INICIO DE CONTENIDO -->
-
-
-<!-- FIN DE CONTENIDO -->
-    <script>
-        var video = document.getElementById('streaming');
-        var videoSrc =  video.src;
+  <section id="ihoh" title="">
+    <div id="incw">
+    </div>
+    <div id="iayi">
+    </div>
+    <video class="streaming" muted id="video" type="application/x-mpegURL" src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" loop="loop" autoplay="autoplay" controls="controls">
+    </video>
+  </section>
+  <script>var items = document.querySelectorAll('#video');
+    for (var i = 0, len = items.length; i < len; i++) {
+      (function(){
+        var video =  document.querySelector('.streaming');
+        var videoSrc = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
         if (Hls.isSupported()) {
           var hls = new Hls();
           hls.loadSource(videoSrc);
           hls.attachMedia(video);
         }
-      </script>
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = videoSrc;
+        }
+      }
+       .bind(items[i]))();
+    }
+  </script>
+<!-- FIN DE CONTENIDO -->
+
 </body>
 </html>

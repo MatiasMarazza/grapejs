@@ -1,10 +1,17 @@
 import grapesjs from "grapesjs"
 
 const script = function(){
-  var video = document.getElementById('i3zk');
-
+  var video =  document.querySelector('.streaming');
+  var videoSrc = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
+  if (Hls.isSupported()) {
+    var hls = new Hls();
+    hls.loadSource(videoSrc);
     hls.attachMedia(video);
+  }
 
+  else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = videoSrc;
+  }
 
 }
 export default function customVideoElement(editor){
@@ -32,6 +39,8 @@ export default function customVideoElement(editor){
           
         },
       });
+
+      
       const dc = editor.DomComponents;
       dc.addType('custom-video', {
         extendFn: ['updateTraits'],
@@ -50,6 +59,11 @@ export default function customVideoElement(editor){
                 type: 'checkbox',
                 name: 'muted',
               })
+              this.addTrait({
+                type: 'text',
+                name: 'id',
+              })
+              this.addAttributes({ 'type': 'application/vnd.apple.mpegurl' });
               // this.addTrait(
               //  [
               //     {

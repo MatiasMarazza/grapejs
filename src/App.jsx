@@ -12,11 +12,12 @@ import customVideoElement from "../plugins/customVideoElement";
 import animationPluggin from "../plugins/animationPluggin";
 
 function App() {
+  
   useEffect(() => {
     const editor = grapesjs.init({
       canvas: {
         // hls para streaming
-        scripts: ['https://cdn.jsdelivr.net/npm/hls.js@1'],
+        scripts: ['https://cdn.jsdelivr.net/npm/hls.js@1', 'https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.14/hls.js'],
         // animate css para animaciones
         styles: ['https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', 'https://unpkg.com/video.js/dist/video-js.css']
       },
@@ -25,7 +26,7 @@ function App() {
       },
       container: '#gjs',
       height: '1080px',
-      width: '1920px',
+      width: '100%',
       plugins: [plugin,customCodePlugin, wrapperPlugin, customVideoBlock, customVideoElement, animationPluggin ],
       storageManager: {
         id: 'gjs-',
@@ -58,14 +59,13 @@ function App() {
       },
       exportWrapper: true,
       wrapperIsBody: true,
-      // dragMode: 'absolute',
+       dragMode: 'absolute',
 
 
-      scripts: ['https://cdn.jsdelivr.net/npm/hls.js@1']
+      scripts: ['https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.14/hls.js']
 
       
     })
-
     editor.getModel().set('dmode','absolute')
     editor.Panels.addPanel({ id: "devices-c" }).get("buttons").add([
       { id: "block-editor", command: function(e) { 
