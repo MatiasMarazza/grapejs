@@ -3,13 +3,16 @@ import { useEffect } from "react";
 import grapesjs from 'grapesjs'
 // preset needed
 import 'grapesjs/dist/css/grapes.min.css'
-import plugin from 'grapesjs-preset-webpage';
+//  import {plugin as presetPlugin} from 'grapesjs-preset-webpage';
 import customCodePlugin from 'grapesjs-custom-code';
+import plugin from 'grapesjs-project-manager';
+import plugin2 from "../plugins";
 //custom plugins
 import wrapperPlugin from '../plugins/wrapperPlugin'
 import customVideoBlock from "../plugins/customVideoBlock";
 import customVideoElement from "../plugins/customVideoElement";
 import animationPluggin from "../plugins/animationPluggin";
+import 'grapesjs-project-manager/dist/grapesjs-project-manager.min.css';
 
 function App() {
   
@@ -27,10 +30,10 @@ function App() {
       container: '#gjs',
       height: '1080px',
       width: '100%',
-      plugins: [plugin,customCodePlugin, wrapperPlugin, customVideoBlock, customVideoElement, animationPluggin ],
+      plugins: [plugin,plugin2, customCodePlugin, wrapperPlugin, customVideoBlock, customVideoElement, animationPluggin ],
       storageManager: {
         id: 'gjs-',
-        type: 'local',
+        type: 'indexeddb',
         autosave: true,
         storeComponents: true,
         storeStyles: true,
@@ -66,6 +69,28 @@ function App() {
 
       
     })
+
+// Running commands from panels
+const pn = editor.Panels;
+pn.addButton('options', {
+    id: 'open-templates',
+    className: 'fa fa-folder-o',
+    attributes: {
+        title: 'Open projects and templates'
+    },
+    command: 'open-templates', //Open modal 
+});
+pn.addButton('views', {
+    id: 'open-pages',
+    className: 'fa fa-file-o',
+    attributes: {
+        title: 'Take Screenshot'
+    },
+    command: 'open-pages',
+    togglable: false
+});
+
+
     editor.getModel().set('dmode','absolute')
     editor.Panels.addPanel({ id: "devices-c" }).get("buttons").add([
       { id: "block-editor", command: function(e) { 
