@@ -40,6 +40,25 @@ function App() {
         storeHtml: true,
         storeCss: true,
       },
+      // storageManager:  {
+      //   //type of save
+      //   type: 'rest-api',
+      //   autosave: true,
+      //   stepsBeforeSave: 1,
+      //   storeComponents: true,
+      //   storeStyles: true,
+      //   storeHtml: true,
+      //   storeCss: true,
+      //   // the URIs below can be the same depending on your API design 
+      //   options: {
+      //     remote: {
+      //       urlStore: 'https://endpoint/store/',// POST
+      //       urlLoad: 'https://endpoint/load/',// GET
+      //       urlDelete: 'https://endpoint/delete/',// DELETE
+      //       // ...
+      //     }
+      //   }
+      // },
       deviceManager: {
         devices:
           [
