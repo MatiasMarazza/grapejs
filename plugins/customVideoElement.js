@@ -63,7 +63,7 @@ export default function customVideoElement(editor){
                 type: 'text',
                 name: 'id',
               })
-              this.addAttributes({ 'type': 'application/vnd.apple.mpegurl' });
+              // this.addAttributes({ 'type': 'application/vnd.apple.mpegurl' });
               // this.addTrait(
               //  [
               //     {

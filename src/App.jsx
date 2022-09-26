@@ -17,7 +17,7 @@ function App() {
     const editor = grapesjs.init({
       canvas: {
         // hls para streaming
-        scripts: ['https://cdn.jsdelivr.net/npm/hls.js@1', 'https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.14/hls.js'],
+        scripts: ['https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js'],
         // animate css para animaciones
         styles: ['https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', 'https://unpkg.com/video.js/dist/video-js.css']
       },
