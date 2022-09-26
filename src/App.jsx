@@ -14,7 +14,7 @@ import animationPluggin from "../plugins/animationPluggin";
 function App() {
   
   useEffect(() => {
-    const editor = grapesjs.init({
+    window.editor = grapesjs.init({
       canvas: {
         // hls para streaming
         scripts: ['https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js'],
