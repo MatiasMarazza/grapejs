@@ -130,7 +130,7 @@ export default function animationPluggin(editor) {
                             name: "infinite",
                             options:[
                                 {value: 'infinite',name: 'Es infinita'},
-                                {value: 'paused',name: 'NO es infinita'},]
+                                {value: '1',name: 'NO es infinita'},]
                       },
                 //       {
                 //         changeProp: 1,
