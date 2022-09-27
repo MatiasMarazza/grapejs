@@ -52,9 +52,12 @@ function App() {
       //   // the URIs below can be the same depending on your API design 
       //   options: {
       //     remote: {
-      //       urlStore: 'https://endpoint/store/',// POST
-      //       urlLoad: 'https://endpoint/load/',// GET
-      //       urlDelete: 'https://endpoint/delete/',// DELETE
+        // POST
+      //       urlStore: 'https://endpoint/store/',
+        // GET
+      //       urlLoad: 'https://endpoint/load/',
+        // DELETE
+      //       urlDelete: 'https://endpoint/delete/',
       //       // ...
       //     }
       //   }
@@ -89,7 +92,7 @@ function App() {
       
     })
 
-// Running commands from panels
+// Botones para manejar el proyectos
 const pn = editor.Panels;
 pn.addButton('options', {
     id: 'open-templates',
@@ -108,21 +111,38 @@ pn.addButton('views', {
     command: 'open-pages',
     togglable: false
 });
-
-
+//Se puede arrastrar en modo absoluto a todos los componentes
     editor.getModel().set('dmode','absolute')
-    editor.Panels.addPanel({ id: "devices-c" }).get("buttons").add([
-      { id: "block-editor", command: function(e) { 
-        const exportData ={
-          html: editor.getHtml(),
-          css: editor.getCss(),
-        };
-        const projectData = editor.getProjectData();
-        console.log(projectData);
-        console.log(exportData);
-      }
-      , className: "fa fa-floppy-o" }
-  ]);
+
+//Botones de hacer y deshacer
+    const um = editor.UndoManager;
+    editor.Panels.addButton('options', {
+      id: 'undo',
+      className: 'fa fa-undo',
+      command: editor => um.undo(),
+    attributes: { title: 'Undo' }
+    });
+    editor.Panels.addButton('options', {
+      id: 'redo',
+      className: 'fa fa-repeat',
+      command: editor => um.redo(),
+      attributes: { title: 'Redo' }
+    });
+
+
+    
+  //   editor.Panels.addPanel({ id: "options" }).get("buttons").add([
+  //     { id: "block-editore", command: function(e) { 
+  //       const exportData ={
+  //         html: editor.getHtml(),
+  //         css: editor.getCss(),
+  //       };
+  //       const projectData = editor.getProjectData();
+  //       console.log(projectData);
+  //       console.log(exportData);
+  //     }
+  //     , className: "fa fa-floppy-o" }
+  // ]);
   }, [])
 
   return (
