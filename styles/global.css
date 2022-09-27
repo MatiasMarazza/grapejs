@@ -1,0 +1,240 @@
+body {
+    background-color: #2c303b;
+  }
+  
+  .editor-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+  }
+  
+  .editor-canvas {
+    flex-grow: 1;
+  }
+  
+  .panel-left {
+    flex-basis: 250px;
+    position: relative;
+    overflow-y: auto;  
+  }
+  
+  span.gjs-pn-btn.fa.fa-bars {
+      display: none;
+  }
+  
+  span.gjs-layer-name {
+    font-family: Helvetica,sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin: 2px 0 0 8px;
+  }
+  
+  .panel-left .gjs-one-bg,
+  .gjs-pn-views-container .gjs-one-bg {
+    background-color: rgba(255, 255, 255, 0.04);
+  }
+  
+  .gjs-btnt.gjs-pn-active,
+  .gjs-color-active,
+  .gjs-pn-btn.gjs-pn-active,
+  .gjs-pn-btn:active,
+  .gjs-block:hover {
+    color: #eee;
+  }
+  
+  #gjs-rte-toolbar .gjs-rte-btn,
+  .gjs-btn-prim,
+  .gjs-btnt,
+  .gjs-clm-tags .gjs-sm-composite.gjs-clm-field,
+  .gjs-clm-tags .gjs-sm-field.gjs-sm-composite,
+  .gjs-clm-tags .gjs-sm-stack #gjs-sm-add,
+  .gjs-color-main,
+  .gjs-mdl-dialog,
+  .gjs-off-prv,
+  .gjs-pn-btn,
+  .gjs-pn-panel,
+  .gjs-sm-sector .gjs-sm-composite.gjs-clm-field,
+  .gjs-sm-sector .gjs-sm-field.gjs-sm-composite,
+  .gjs-sm-sector .gjs-sm-stack #gjs-sm-add {
+    color: #eee;
+  }
+  
+  #gjs-rte-toolbar,
+  .gjs-bg-main,
+  .gjs-clm-select option,
+  .gjs-clm-tags .gjs-sm-colorp-c,
+  .gjs-editor,
+  .gjs-mdl-dialog,
+  .gjs-nv-item .gjs-nv-title-c,
+  .gjs-off-prv,
+  .gjs-pn-panel,
+  .gjs-block,
+  .gjs-select option,
+  .gjs-sm-sector .gjs-sm-colorp-c,
+  .gjs-sm-select option,
+  .gjs-sm-unit option,
+  .sp-container {
+    background-color: #2c303b;
+  }
+  
+  .gjs-pn-btn.gjs-pn-active {
+      background-color: rgba( 255, 255, 255, 0.1 );
+      box-shadow: none;
+  }
+  
+  .gjs-pn-views .gjs-pn-btn {
+      margin: 0;
+      padding: 5px 15px;
+  }
+
+/* RULER */
+.rul_wrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.rul_wrapper * {
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    -moz-user-select: none;
+    /* Firefox all */
+    -ms-user-select: none;
+    /* IE 10+ */
+    /* No support for these yet, use at own risk */
+    -o-user-select: none;
+    user-select: none;
+}
+
+.rul_ruler {
+    display: block;
+    position: absolute;
+    border: 1px solid rgba(206, 219, 236, .5);
+    background-color: rgba(0, 0, 0, 0.2);
+    pointer-events: all;
+    filter: blur(0);
+    -webkit-filter: blur(0);
+    z-index: 1000;
+
+}
+
+.rul_corner {
+    pointer-events: all;
+    position: absolute;
+    background-color: lightgray;
+    z-index: 1010;
+    cursor: pointer;
+    font-size: 0.75rem;
+    color: #000;
+    text-align: center;
+}
+
+.rul_corner:hover {
+    background-color: lightgray;
+    color: red;
+}
+
+.rul_cornerTL {
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid rgba(206, 219, 236, .5);
+    border-right: 1px solid rgba(206, 219, 236, .5);
+}
+
+.rul_cornerTR {
+    top: 1px;
+    right: 1px;
+    border-bottom: 1px solid rgba(206, 219, 236, .5);
+    border-left: 1px solid rgba(206, 219, 236, .5);
+}
+
+.rul_cornerBL {
+    bottom: 1px;
+    left: 1px;
+    border-top: 1px solid rgba(206, 219, 236, .5);
+    border-right: 1px solid rgba(206, 219, 236, .5);
+}
+
+.rul_cornerBR {
+    bottom: 1px;
+    right: 1px;
+    border-top: 1px solid rgba(206, 219, 236, .5);
+    border-left: 1px solid rgba(206, 219, 236, .5);
+}
+
+.rul_ruler_Vertical {
+    cursor: ew-resize;
+    border-left: none;
+}
+
+.rul_ruler_Horizontal {
+    cursor: ns-resize;
+    border-top: none;
+}
+
+.rul_line {
+    position: absolute;
+    color: transparent;
+    background-color: transparent;
+    border-bottom: 1px solid red;
+    border-left: 1px solid red;
+    pointer-events: all;
+    z-index: 1000;
+}
+
+.rul_line_dragged {
+    border: 1px dotted #6B7587;
+}
+
+.rul_line:hover {
+    border-bottom: 1px solid #236E77;
+    border-left: 1px solid #236E77;
+}
+
+.rul_lineVer {
+    top: 0;
+    bottom: 0;
+}
+
+.rul_lineVer:hover {
+    cursor: ew-resize;
+}
+
+.rul_lineHor {
+    right: 0;
+    left: 0;
+}
+
+.rul_lineHor:hover {
+    cursor: ns-resize;
+}
+
+.rul_tooltip:after {
+    background: transparent;
+    /*#3bb7c7*/
+    color: red;
+    /*white*/
+    /*border: 1px solid rgba(0, 0, 0, 0.2);*/
+    font-size: 12px;
+    content: attr(data-tip);
+    top: 50%;
+    left: 50%;
+    margin-top: 1px;
+    margin-left: 1px;
+    padding: 2px 5px;
+    position: absolute;
+    z-index: 10001;
+    min-width: 45px;
+}
+
+.rul_tracker {
+    height: 1px;
+    width: 1px;
+    background: red;
+    /*#3bb7c7*/
+    position: absolute;
+    pointer-events: none;
+}

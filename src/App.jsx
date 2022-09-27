@@ -1,26 +1,30 @@
 // react needed
 import { useEffect } from "react";
 import grapesjs from 'grapesjs'
+import '../styles/global.css'
 // preset needed
 import 'grapesjs/dist/css/grapes.min.css'
 //  import {plugin as presetPlugin} from 'grapesjs-preset-webpage';
 import customCodePlugin from 'grapesjs-custom-code';
 import plugin from 'grapesjs-project-manager';
-import plugin2 from "../plugins";
+import 'grapesjs-project-manager/dist/grapesjs-project-manager.min.css';
+import blocks from "../plugins/basic-blocks";
 //custom plugins
 import wrapperPlugin from '../plugins/wrapperPlugin'
 import customVideoBlock from "../plugins/customVideoBlock";
 import customVideoElement from "../plugins/customVideoElement";
 import animationPluggin from "../plugins/animationPluggin";
-import 'grapesjs-project-manager/dist/grapesjs-project-manager.min.css';
 
 function App() {
   
   useEffect(() => {
     window.editor = grapesjs.init({
+      layerManager: {
+        appendTo: '.layers-container'
+    },    
       canvas: {
         // hls para streaming
-        scripts: ['https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js'],
+        scripts: ['https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js','https://cdn.jsdelivr.net/npm/hls.js@1'],
         // animate css para animaciones
         styles: ['https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', 'https://unpkg.com/video.js/dist/video-js.css']
       },
@@ -30,7 +34,7 @@ function App() {
       container: '#gjs',
       height: '1080px',
       width: '100%',
-      plugins: [plugin,plugin2, customCodePlugin, wrapperPlugin, customVideoBlock, customVideoElement, animationPluggin ],
+      plugins: [plugin,blocks,customCodePlugin, wrapperPlugin, customVideoBlock, customVideoElement, animationPluggin ],
       storageManager: {
         id: 'gjs-',
         type: 'indexeddb',
@@ -53,11 +57,11 @@ function App() {
       //   options: {
       //     remote: {
         // POST
-      //       urlStore: 'https://endpoint/store/',
+      //       urlStore: 'https://localhost:3010/store/',
         // GET
-      //       urlLoad: 'https://endpoint/load/',
+      //       urlLoad: 'https://localhost:3010//load/',
         // DELETE
-      //       urlDelete: 'https://endpoint/delete/',
+      //       urlDelete: 'https://localhost:3010/delete/',
       //       // ...
       //     }
       //   }
@@ -74,16 +78,10 @@ function App() {
           ]
       },
       pluginsOpts: {
-        'grapesjs-preset-webpage': {
-          blocksBasicOpts: {
-            blocks: ['column1', 'column2', 'column3', 'column3-7', 'text', 'link', 'image', 'video'],
-            flexGrid: 1,
-          },
-          blocks: ['link-block', 'quote', 'text-basic'],
-        },
+//opciones de pluggin
       },
       exportWrapper: true,
-      wrapperIsBody: true,
+      // wrapperIsBody: true,
        dragMode: 'absolute',
 
 
@@ -92,6 +90,9 @@ function App() {
       
     })
 
+//Añadir dimensiones
+    const styleManager = editor.StyleManager;
+    styleManager.addSector('dimension')
 // Botones para manejar el proyectos
 const pn = editor.Panels;
 pn.addButton('options', {
@@ -129,7 +130,6 @@ pn.addButton('views', {
       attributes: { title: 'Redo' }
     });
 
-
     
   //   editor.Panels.addPanel({ id: "options" }).get("buttons").add([
   //     { id: "block-editore", command: function(e) { 
@@ -146,7 +146,14 @@ pn.addButton('views', {
   }, [])
 
   return (
+    <div className="editor-row">
+  <div className="panel-left">
+    <div className="layers-container"></div>
+  </div>
+  <div className="editor-canvas">
     <div id="gjs"></div>
+  </div>
+</div>
   );
 }
 export default App;

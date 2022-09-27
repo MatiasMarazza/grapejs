@@ -132,17 +132,17 @@ export default function animationPluggin(editor) {
                                 {value: 'infinite',name: 'Es infinita'},
                                 {value: 'paused',name: 'NO es infinita'},]
                       },
-                      {
-                        changeProp: 1,
-                        type: "number",
-                        label: "Alto(px)",
-                        name: "height",
-                  }, {
-                        changeProp: 1,
-                        type: "number",
-                        label: "Ancho(px)",
-                        name: "width",
-                  },
+                //       {
+                //         changeProp: 1,
+                //         type: "number",
+                //         label: "Alto(px)",
+                //         name: "height",
+                //   }, {
+                //         changeProp: 1,
+                //         type: "number",
+                //         label: "Ancho(px)",
+                //         name: "width",
+                //   },
                     
                     ]
                       ]
@@ -152,18 +152,18 @@ export default function animationPluggin(editor) {
                  this.on("change:duration", this.onAnimationChange);
                  this.on("change:delay", this.onAnimationChange);
                  this.on("change:infinite", this.onAnimationChange);
-                 this.on("change:width", this.onAnimationChange);
-                 this.on("change:height", this.onAnimationChange);
+                //  this.on("change:width", this.onAnimationChange);
+                //  this.on("change:height", this.onAnimationChange);
               },
               onAnimationChange() {
                  const animation = this.get("animation");
                  const duration = this.get("duration");
                  const delay = this.get("delay");
                  const infinite = this.get("infinite");
-                 const width = this.get("width");
-                 const height = this.get("height");
-                 this.addStyle({ "width": `${width}px` });
-                 this.addStyle({ "height": `${height}px` });
+                //  const width = this.get("width");
+                //  const height = this.get("height");
+                //  this.addStyle({ "width": `${width}px` });
+                //  this.addStyle({ "height": `${height}px` });
                  this.addStyle({ "animation": `${animation} ${duration}s ${delay}s ${infinite}` });
               }
             }),

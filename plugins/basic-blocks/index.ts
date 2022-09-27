@@ -93,7 +93,7 @@ export type PluginOptions = {
   rowHeight?: number;
 };
 
-const plugin2: grapesjs.Plugin<PluginOptions> = (editor, opts = {}) => {
+const blocks: grapesjs.Plugin<PluginOptions> = (editor, opts = {}) => {
   const config: Required<PluginOptions> = {
     blocks: [
       'column1',
@@ -126,4 +126,4 @@ const plugin2: grapesjs.Plugin<PluginOptions> = (editor, opts = {}) => {
   loadBlocks(editor, config);
 };
 
-export default plugin2;
+export default blocks;
