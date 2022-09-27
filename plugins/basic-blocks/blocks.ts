@@ -117,6 +117,7 @@ export default function(editor: grapesjs.Editor, opts: Required<PluginOptions>) 
       let value = attrs[key];
       const toParse = value instanceof Array || value instanceof Object;
       value = toParse ? JSON.stringify(value) : value;
+      //@ts-ignore
       result.push(`${key}=${toParse ? `'${value}'` : `'${value}'`}`);
     }
 
